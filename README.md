@@ -1,24 +1,28 @@
-🌌 StellarUDP
+🚀 StellarUDP – Raw UDP Flooder avec Fragmentation IP Manuelle
 
-    Développé par StellarBots123 — Membre de la team [Stellar-iot]
+    Coded by: StellarBots123
+    Projet: Stellar-iot
+    Nom du fichier: flood.go
+    Usage réservé à des fins éducatives ⚠️
 
-🚀 StellarUDP est un outil d’envoi massif de paquets UDP spoofés, écrit en Go, conçu pour tester la résilience réseau. Léger, rapide, sans dépendance à libpcap, il permet de simuler des charges réseau réalistes à partir d’un bloc IP spécifique.
-✨ Fonctionnalités
+🧠 Description
 
-    🔥 Envoi ultra-rapide de paquets UDP
+StellarUDP est un outil de stress-test réseau écrit en Go, qui génère un flux de paquets UDP avec IP spoofées et fragmentation manuelle au niveau IP.
+Il utilise un bloc CIDR basé sur ton IP publique (via ipinfo.io) pour générer un ensemble réaliste d'IP sources, et permet d'exclure certaines adresses à l’aide d’un fichier exclude.txt.
+🛠 Fonctionnalités
 
-    🎭 Spoofing IP dans le bloc 212.64.201.0/24
+    📦 Fragmentation IP manuelle (supporte MTU < 1500)
 
-    🧱 Construction manuelle des entêtes IP + UDP (raw socket)
+    🔥 Envoi massif de paquets UDP avec spoof IP
 
-    ⏳ Contrôle complet via 4 arguments : IP cible, port, durée, taille paquet
+    🌐 Récupération automatique du CIDR de l'IP publique
 
-    💻 100% Go — aucun outil externe requis
+    🔒 Exclusion d'IP via exclude.txt
+
+    🎯 Personnalisation complète : IP cible, port, durée, taille du paquet
 
 ⚙️ Compilation
 
-git clone https://github.com/StellarBots123/StellarUDP.git
-cd StellarUDP
 go build -o flood flood.go
 
 🚀 Utilisation
@@ -27,50 +31,50 @@ sudo ./flood <IP_CIBLE> <PORT> <DUREE_SECONDES> <TAILLE_PACKET>
 
 Exemple :
 
-sudo ./flood 192.250.230.103 1337 60 1024
+sudo ./flood 192.168.1.100 80 60 4096
 
-Argument	Description
-IP_CIBLE	L’adresse IP cible
-PORT	Port UDP de destination
-DUREE_SECONDES	Durée d’exécution du flood (ex : 60)
-TAILLE_PACKET	Taille de chaque paquet (ex : 1024 octets)
-📤 Exemple de sortie
+    IP_CIBLE : adresse IP de la cible
 
-[+] Cible : 192.250.230.103
-[+] Port : 1337
+    PORT : port UDP de destination
+
+    DUREE_SECONDES : durée de l’envoi en secondes
+
+    TAILLE_PACKET : taille totale du payload UDP (jusqu'à 65507 octets)
+
+📁 Fichier exclude.txt
+
+Permet d’exclure certaines adresses IP du spoof (exemple : ton routeur, ton IP publique, etc.)
+
+Exemple :
+
+192.168.1.1
+192.168.1.254
+203.0.113.50
+
+🧪 Exemple de sortie
+
+[+] Flood Tool by StellarBots123
+[-] Disclaimer: This tool is intended for educational purposes only. Use responsibly and legally.
+[+] IP externe: 203.0.113.10
+[+] CIDR: 203.0.113.0/24
+[+] IPs exclues chargées: 3
+[+] Cible : 192.168.1.100
+[+] Port : 80
 [+] Durée : 60 secondes
-[+] Taille paquet : 1024 octets
-[+] Bloc généré avec 256 IP spoofées.
-[+] IP spoofée : 212.64.201.1
-...
+[+] Taille paquet : 4096
+[+] Génération du bloc basé sur le CIDR...
+[+] Bloc généré avec 251 IP spoofées.
 [+] Terminé après 60 secondes.
-
-📘 Aide intégrée dans le code
-
-if len(os.Args) != 5 {
-	fmt.Println("📘 Usage: sudo ./flood <IP_CIBLE> <PORT> <DUREE_SECONDES> <TAILLE_PACKET>")
-	fmt.Println("Exemple: sudo ./flood 192.250.230.103 1337 60 1024")
-	return
-}
 
 ⚠️ Avertissement légal
 
-    ❗ StellarUDP est un outil à usage éducatif et de test uniquement.
-    Toute utilisation sur des réseaux ou machines sans autorisation explicite est illégale et interdite.
-    Vous êtes seul responsable de son usage.
+Ce logiciel est fourni à des fins éducatives et de test uniquement.
+Toute utilisation non autorisée ou malveillante est strictement interdite.
+L’auteur ne peut être tenu responsable de l’usage que vous en faites.
 
-💡 To-do
+🧑‍💻 Auteur
 
-Option --quiet pour désactiver l'affichage
-
-Support TCP/ICMP spoofé
-
-Ajout d'autres blocs IP configurables
-
-    Interface CLI interactive
-
-👨‍💻 Auteur
-
-    👾 Projet créé par StellarBots123
-    🛰️ Membre de la team Stellar-iot
-    🔗 GitHub
+StellarBots123
+Projet : Stellar-iot
+Langage : Go
+Date : 2025
