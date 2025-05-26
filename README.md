@@ -2,7 +2,7 @@
 
     Coded by: StellarBots123
     Projet: Stellar-iot
-    Nom du fichier: flood.go
+    Nom du fichier: StellarUDP
     Usage réservé à des fins éducatives ⚠️
 
 🧠 Description
@@ -21,17 +21,13 @@ Il utilise un bloc CIDR basé sur ton IP publique (via ipinfo.io) pour générer
 
     🎯 Personnalisation complète : IP cible, port, durée, taille du paquet
 
-⚙️ Compilation
-
-go build -o flood flood.go
-
 🚀 Utilisation
 
-sudo ./flood <IP_CIBLE> <PORT> <DUREE_SECONDES> <TAILLE_PACKET>
+sudo ./StellarUDP <IP_CIBLE> <PORT> <DUREE_SECONDES> <TAILLE_PACKET>
 
 Exemple :
 
-sudo ./flood 192.168.1.100 80 60 4096
+sudo ./StellarUDP 192.168.1.100 80 60 4096
 
     IP_CIBLE : adresse IP de la cible
 
